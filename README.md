@@ -97,6 +97,14 @@ LLM_vs_Human_Decision_Making/
 └── 📚 requirements_base.txt        # Python dependencies
 ```
 
+## 📊 Data & Analysis
+
+**Analytical Code and Data**: The complete analytical code and experimental data supporting this research are available on the Open Science Framework:
+
+🔗 **[OSF Repository: Analytical Code and Data](https://osf.io/y9u48/?view_only=a5262d08abb4425f91656f35cc1b2bdd)**
+
+
+
 ## ⚙️ Configuration
 
 ### Session Settings
@@ -128,15 +136,6 @@ The system supports a wide range of LLM providers and models:
 - **DeepSeek**: `Deepseek-r1`
 
 For the complete list of supported models, see [`LLM_utils/llm/__init__.py`](LLM_utils/llm/__init__.py)
-
-## 📊 Data Collection
-
-The system automatically collects:
-- **Decision sequences** and response times
-- **Learning curves** and adaptation patterns  
-- **Risk preferences** and betting behaviors
-- **Cognitive flexibility** metrics
-- **LLM reasoning** processes and confidence scores
 
 
 ## 📄 License
