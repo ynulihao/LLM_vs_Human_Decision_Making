@@ -1,0 +1,267 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    {% if lang == 'both' %}
+        本回合游戏结果 (Results in this round)
+    {% elif lang == 'en' %}
+        Results in this round
+    {% elif lang == 'zh' %}
+        本回合游戏结果
+    {% endif %}
+{% endblock %}
+
+{% block styles %}
+    <style>
+        .red {
+            color: #c00000;
+        }
+
+        .green {
+            color: #538135;
+        }
+
+        .blue {
+            color: #2f5496;
+        }
+
+        .horbox {
+            display: flex;
+            align-items: center;
+        }
+
+        img {
+            width: 10vw;
+        }
+
+        .alert-border {
+            border: 8px solid red;
+        }
+
+        .img-fluid {
+            max-height: 50px;
+        }
+
+        .box {
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            color: white;
+            border: 2px solid black; /* 黑色边框 */
+        }
+
+        .blue-box {
+            background-color: #4f71be;
+        }
+
+        .red-box {
+            background-color: #b02418;
+        }
+
+        .yellow-box {
+            background-color: #ffff54;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="{% static "cambridge_gambling_task/css/style.css" %}">
+
+{% endblock %}
+
+{% block content %}
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {% if lang == 'both' %}
+                <li class="breadcrumb-item">第{{ round }}轮(Round {{ round }})</li>
+            {% elif lang == 'en' %}
+                <li class="breadcrumb-item">Round {{ round }}</li>
+            {% elif lang == 'zh' %}
+                <li class="breadcrumb-item">第{{ round }}轮</li>
+            {% endif %}
+        </ol>
+    </nav>
+    <div class="container text-center">
+
+        <div style="font-size: 1.2rem; text-align: center; color: black; margin-top: 20px; margin-bottom: 20px;">
+            {% if lang == 'both' %}
+                <div>
+                    你选择的是{{ chinese_choice_color }}宝箱，下注比例是{{ choice_percent }}%，金币在{{ token_box_id }}号宝箱下:
+                </div>
+
+                <div style="margin: 30px"></div>
+
+                <div class="d-flex flex-wrap justify-content-center">
+                    <!-- 生成蓝色箱子 -->
+                    {% for i in box_blue_list %}
+                        <div>
+                            {{ if token_box_id == i}}
+                            {#                            <div class="box yellow-box"></div>#}
+                            <img class="box red-box" src="{% static "cambridge_gambling_task/image/coin.jpg" %}"
+                                 alt="coin">
+                            F型
+                            {{ else }}
+                            <img class="box blue-box" src="{% static "cambridge_gambling_task/image/box_A.jpg" %}"
+                                 alt="Blue Box">
+                            F型
+                            {{ endif }}
+                        </div>
+                    {% endfor %}
+
+                    <!-- 生成红色箱子 -->
+                    {% for i in box_red_list %}
+                        <div>
+                            {{ if token_box_id == i}}
+                            {#                            <div class="box yellow-box"></div>#}
+                            <img class="box red-box" src="{% static "cambridge_gambling_task/image/coin.jpg" %}"
+                                 alt="coin">
+                            J型
+                            {{ else }}
+                            <img class="box red-box" src="{% static "cambridge_gambling_task/image/box_B.png" %}"
+                                 alt="Red Box">
+                            J型
+                            {{ endif }}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div style="margin: 60px"></div>
+
+                {{ if payoff < 0}}
+                不幸的是，您猜错了，此回合您获得了：
+                <b class="red" style="font-size: 1.3em;">{{ payoff }} 点</b>
+                {{ else }}
+                幸运的是，您猜对了，此回合您获得了：
+                <b class="green" style="font-size: 1.3em;">{{ payoff }} 点</b>
+                {{ endif }}
+                <hr>
+                当前阶段总共获得了：<b style="font-size: 1.3em;">{{ remain }} 点</b>
+            {% elif lang == 'en' %}
+                <div>
+                    You chose the {{ chinese_choice_color }} chest, and your bet ratio was {{ choice_percent }}%, with
+                    the gold coin under chest number {{ token_box_id }}:
+                </div>
+
+                <div style="margin: 30px"></div>
+
+                <div class="d-flex flex-wrap justify-content-center">
+                    <!-- Generating blue chests -->
+                    {% for i in box_blue_list %}
+                        <div>
+                            {% if token_box_id == i %}
+                                <!-- <div class="box yellow-box"></div> -->
+                                <img class="box red-box" src="{% static "cambridge_gambling_task/image/coin.jpg" %}"
+                                     alt="coin">
+                                Type F
+                            {% else %}
+                                <img class="box blue-box" src="{% static "cambridge_gambling_task/image/box_A.jpg" %}"
+                                     alt="Blue Box">
+                                Type F
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+                    <!-- Generating red chests -->
+                    {% for i in box_red_list %}
+                        <div>
+                            {% if token_box_id == i %}
+                                <!-- <div class="box yellow-box"></div> -->
+                                <img class="box red-box" src="{% static "cambridge_gambling_task/image/coin.jpg" %}"
+                                     alt="coin">
+                                Type J
+                            {% else %}
+                                <img class="box red-box" src="{% static "cambridge_gambling_task/image/box_B.png" %}"
+                                     alt="Red Box">
+                                Type J
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div style="margin: 60px"></div>
+
+                {% if payoff < 0 %}
+                    Unfortunately, you guessed wrong, and in this round you received:
+                    <b class="red" style="font-size: 1.3em;">{{ payoff }} points</b>
+                {% else %}
+                    Fortunately, you guessed right, and in this round you received:
+                    <b class="green" style="font-size: 1.3em;">{{ payoff }} points</b>
+                {% endif %}
+                <hr>
+                Total points earned in this phase: <b style="font-size: 1.3em;">{{ remain }} points</b>
+            {% elif lang == 'zh' %}
+                <div>
+                    你选择的是{{ chinese_choice_color }}宝箱，下注比例是{{ choice_percent }}%，金币在{{ token_box_id }}号宝箱下:
+                </div>
+
+                <div style="margin: 30px"></div>
+
+                <div class="d-flex flex-wrap justify-content-center">
+                    <!-- 生成蓝色箱子 -->
+                    {% for i in box_blue_list %}
+                        <div>
+                            {{ if token_box_id == i}}
+                            {#                            <div class="box yellow-box"></div>#}
+                            <img class="box red-box" src="{% static "cambridge_gambling_task/image/coin.jpg" %}"
+                                 alt="coin">
+                            F型
+                            {{ else }}
+                            <img class="box blue-box" src="{% static "cambridge_gambling_task/image/box_A.jpg" %}"
+                                 alt="Blue Box">
+                            F型
+                            {{ endif }}
+                        </div>
+                    {% endfor %}
+
+                    <!-- 生成红色箱子 -->
+                    {% for i in box_red_list %}
+                        <div>
+                            {{ if token_box_id == i}}
+                            {#                            <div class="box yellow-box"></div>#}
+                            <img class="box red-box" src="{% static "cambridge_gambling_task/image/coin.jpg" %}"
+                                 alt="coin">
+                            J型
+                            {{ else }}
+                            <img class="box red-box" src="{% static "cambridge_gambling_task/image/box_B.png" %}"
+                                 alt="Red Box">
+                            J型
+                            {{ endif }}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div style="margin: 60px"></div>
+
+                {{ if payoff < 0}}
+                不幸的是，您猜错了，此回合您获得了：
+                <b class="red" style="font-size: 1.3em;">{{ payoff }} 点</b>
+                {{ else }}
+                幸运的是，您猜对了，此回合您获得了：
+                <b class="green" style="font-size: 1.3em;">{{ payoff }} 点</b>
+                {{ endif }}
+                <hr>
+                当前阶段总共获得了：<b style="font-size: 1.3em;">{{ remain }} 点</b>
+            {% endif %}
+        </div>
+
+        <div class="row">
+            {% next_button %}
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        {% if lang == 'both' %}
+            $(".otree-btn-next").html("下一页 (Next)");
+        {% elif lang == 'en' %}
+            $(".otree-btn-next").html("Next");
+        {% elif lang == 'zh' %}
+            $(".otree-btn-next").html("下一页");
+        {%  endif %}
+    </script>
+{% endblock %}

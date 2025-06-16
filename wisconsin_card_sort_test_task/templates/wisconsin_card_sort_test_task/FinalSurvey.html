@@ -1,0 +1,41 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    实验问卷{# （1/2） #}
+{% endblock %}
+
+{% block styles %}
+    <style>
+        .para-text {
+            line-height: 2rem;
+            font-size: 1.1rem;
+            padding: 30px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="para-text">
+        <h5>在进行游戏的过程中：</h5>
+        {% formfield player.final_survey_group_1_q1_choice %}
+        {% formfield player.final_survey_group_1_q2_choice %}
+        {% formfield player.final_survey_group_1_q3_choice %}
+        {% formfield player.final_survey_group_1_q4_choice %}
+        <br>
+        <h5>这项游戏：</h5>
+        {% formfield player.final_survey_group_2_q1_choice %}
+        {% formfield player.final_survey_group_2_q2_choice %}
+        <br>
+        <h5>我认为：</h5>
+        {% formfield player.final_survey_group_3_q1_choice %}
+        {% formfield player.final_survey_group_3_q2_choice %}
+        {% formfield player.final_survey_group_3_q3_choice %}
+        {% formfield player.final_survey_group_3_q4_choice %}
+        <br>
+        <h5>当前人工智能的每轮的表现为({{ gpt_mean }}±{{ gpt_std }})，你的得分是{{ total_payoff }}；如果再进行一场游戏，我愿意：</h5>
+        {% formfield player.final_survey_group_4_q1_choice %}
+        {% formfield player.final_survey_group_4_q2_choice %}
+        {% next_button %}
+    </div>
+{% endblock %}

@@ -1,0 +1,99 @@
+.verbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.horbox {
+    display: flex;
+    align-items: center;
+}
+
+img {
+    width: 10vw;
+}
+
+.card table {
+    table-layout: fixed; /* 固定单元格大小 */
+    width: 100%;
+    height: 12em; /* 表格总高度，使用相对单位 */
+}
+
+table tr {
+    /* 没有样式需要修改 */
+}
+
+.card table td {
+    width: 33.33%; /* 确保单元格宽度均分 */
+    height: 2.4em; /* 单元格高度相对表格高度 */
+    border: none; /* 去除边框 */
+    vertical-align: middle; /* 垂直居中 */
+    text-align: center; /* 水平居中 */
+}
+
+/*!* 图形样式 *!*/
+/*.circle {*/
+/*    width: 2.5rem; !* 40px = 2.5rem *!*/
+/*    height: 2.5rem;*/
+/*    border-radius: 50%;*/
+/*    display: inline-block;*/
+/*}*/
+
+/*.triangle {*/
+/*    width: 0;*/
+/*    height: 0;*/
+/*    border-left: 1.25rem solid transparent; !* 20px = 1.25rem *!*/
+/*    border-right: 1.25rem solid transparent;*/
+/*    border-bottom: 2.5rem solid;*/
+/*    display: inline-block;*/
+/*}*/
+
+/*.crosses {*/
+/*    position: relative;*/
+/*    display: inline-block;*/
+/*    width: 2.5rem; !* 40px = 2.5rem *!*/
+/*    height: 2.5rem;*/
+/*}*/
+
+/*.crosses::before,*/
+/*.crosses::after {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    background-color: currentColor; !* 使用文本颜色，支持动态变化 *!*/
+/*}*/
+
+/*.crosses::before {*/
+/*    width: 0.625rem; !* 10px = 0.625rem *!*/
+/*    height: 100%; !* 竖线的高度等于容器高度 *!*/
+/*    top: 0;*/
+/*    left: 50%;*/
+/*    transform: translateX(-50%);*/
+/*}*/
+
+/*.crosses::after {*/
+/*    width: 100%; !* 横线的宽度等于容器宽度 *!*/
+/*    height: 0.625rem; !* 10px = 0.625rem *!*/
+/*    left: 0;*/
+/*    top: 50%;*/
+/*    transform: translateY(-50%);*/
+/*}*/
+
+.circle {
+    font-size: 2.5rem; /* 40px = 2.5rem */
+    color: inherit;
+}
+
+.triangle {
+    font-size: 2.5rem; /* 40px = 2.5rem */
+    color: inherit;
+}
+
+.crosses {
+    font-size: 2.5rem; /* 40px = 2.5rem */
+    color: inherit;
+}
+
+.star {
+    font-size: 2.5rem; /* 40px = 2.5rem */
+    color: inherit;
+}

@@ -1,0 +1,106 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    {% if lang == 'both' %}
+        选择你的箱子 (Choose Your Chest)
+    {% elif lang == 'en' %}
+        Choose Your Chest
+    {% elif lang == 'zh' %}
+        选择你的箱子
+    {% endif %}
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static "iowa_gambling_task/css/style.css" %}">
+{% endblock %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {% if lang == 'both' %}
+                <li class="breadcrumb-item">第{{ round }}轮(Round {{ round }})</li>
+            {% elif lang == 'en' %}
+                <li class="breadcrumb-item">Round {{ round }}</li>
+            {% elif lang == 'zh' %}
+                <li class="breadcrumb-item">第{{ round }}轮</li>
+            {% endif %}
+        </ol>
+    </nav>
+    <div class="alert alert-info" role="alert">
+        {% if lang == 'both' %}
+            请从下列的宝箱中选择一个。<br>
+            (Please choose one of the following treasure chests.)
+        {% elif lang == 'en' %}
+            Please choose one of the following treasure chests.
+        {% elif lang == 'zh' %}
+            请从下列的宝箱中选择一个。
+        {% endif %}
+
+    </div>
+
+    <div class="container text-center">
+        <div class="row">
+        {% for i in card_num_for_loop %}
+
+                <div class="col">
+                    <div class="verbox">
+                        <img src="{% static "iowa_gambling_task/image/box.jpg" %}" alt="卡片{{ i }}">
+                        {% if lang == 'both' %}
+                            宝箱{{ i }}(Chest{{ i }})
+                        {% elif lang == 'en' %}
+                            <b>Chest{{ i }}</b>
+                        {% elif lang == 'zh' %}
+                            <b>宝箱{{ i }}</b>
+                        {% endif %}
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+
+        <div class="row" style="font-weight: bold; font-size: large; margin-top: 5vh;">
+{#            {% formfields %}#}
+
+{#            {% if lang == 'both' %}#}
+{#                <p>请选择你的箱子（Please Choose your chest）：</p>#}
+{#            {% elif lang == 'en' %}#}
+{#                <p>Please Choose your chest：</p>#}
+{#            {% elif lang == 'zh' %}#}
+{#                <p>请选择你的箱子：</p>#}
+{#            {% endif %}#}
+
+            <p>
+                {{ for choice in form.choice }}
+                {% if choice != -1  and forloop.counter <= card_num %}
+                    {% if lang == 'both' %}
+                        {{ choice.label }}
+                    {% elif lang == 'en' %}
+                        Chest {{ forloop.counter }}
+                    {% elif lang == 'zh' %}
+                        宝箱 {{ forloop.counter }}
+                    {% endif %}
+
+                    {{ choice }}&nbsp
+                {% endif %}
+                {{ endfor }}
+
+            </p>
+        </div>
+        <div class="row">
+            {% next_button %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        {% if lang == 'both' %}
+            $(".otree-btn-next").html("下一页 (Next)");
+        {% elif lang == 'en' %}
+            $(".otree-btn-next").html("Next");
+        {% elif lang == 'zh' %}
+            $(".otree-btn-next").html("下一页");
+        {%  endif %}
+    </script>
+{% endblock %}

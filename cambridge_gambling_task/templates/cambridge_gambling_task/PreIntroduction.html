@@ -1,0 +1,86 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    {% if lang == 'both' %}
+        游戏介绍 (Introduction)
+    {% elif lang == 'en' %}
+        Introduction
+    {% elif lang == 'zh' %}
+        游戏介绍
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="card text-center">
+        <div class="card-header">
+            {% if lang == 'both' %}
+                <h2>欢迎参加行为实验 (Welcome to the behavioral experiment)</h2>
+            {% elif lang == 'en' %}
+                <h2>Welcome to the behavioral experiment</h2>
+            {% elif lang == 'zh' %}
+                <h2>欢迎参加行为实验</h2>
+            {% endif %}
+        </div>
+        <div class="card-body">
+
+        {% if lang == 'both' %}
+            <div class="card-text">
+                <br>
+                <p class="text-start">欢迎参加行为实验！所有收集到的数据仅用于研究目的。(Welcome to the behavioral experiment! All collected data will be used for research purposes only.)</p>
+                <p class="text-start">完成实验后，您将获得一定的报酬，其中包括 15 元的出场费和实验奖金，实验奖金通常在 5-25 元之间。(You will receive a certain amount of payoff after finishing the experiment, which consists of a show-up fee of 15 RMB and an experiment bonus, typically ranging from 5-35 RMB.)</p>
+                <p class="text-start">奖金取决于您的最终得分。得分越高，报酬越高。系统会实时显示您的累积得分，并在实验结束时显示您的最终得分。(The bonus depends on your final score. A Higher score means a higher payoff. The system will show your score cumulated over time and will show your final score at the end of the experiment.)</p>
+                <p class="text-start"><b>请注意</b>，如果您中途退出，将无法获得任何报酬。请勿在实验过程中与其他参与者进行交流。(<b>Note that</b> you will receive no payoff if you withdraw midway. Please do not communicate with other participants during the experiment.)</p>
+                <p class="text-start">如有需要，您可以举手寻求帮助。请确保在整个实验过程中所有电子设备处于静音或飞行模式。感谢您的配合。(You can raise your hand for assistance if needed. Ensure all the electronic devices are on silent or flight mode during the entire experiment. Thank you for your cooperation.)</p>
+            </div>
+        {% elif lang == 'en' %}
+            <div class="card-text">
+                <br>
+                <p class="text-start">Welcome to the behavioral experiment! All collected data will be used for research purposes only. </p>
+                <p class="text-start">You will receive a certain amount of payoff after finishing the experiment, which consists of a show-up fee of 15 RMB and an experiment bonus, typically ranging from 5-25 RMB.</p>
+                <p class="text-start">The bonus depends on your final score. A Higher score means a higher payoff. The system will show your score cumulated over time and will show your final score at the end of the experiment.</p>
+                <p class="text-start"><b>Note that</b> you will receive no payoff if you withdraw midway. Please do not communicate with other participants during the experiment.</p>
+                <p class="text-start">You can raise your hand for assistance if needed. Ensure all the electronic devices are on silent or flight mode during the entire experiment. Thank you for your cooperation. </p>
+            </div>
+        {% elif lang == 'zh' %}
+            <div class="card-text">
+                <br>
+                <p class="text-start">欢迎参加行为实验！所有收集到的数据仅用于研究目的。</p>
+                <p class="text-start">完成实验后，您将获得一定的报酬，其中包括 15 元的出场费和实验奖金，实验奖金通常在 5-25 元之间。</p>
+                <p class="text-start">奖金取决于您的最终得分。得分越高，报酬越高。系统会实时显示您的累积得分，并在实验结束时显示您的最终得分。</p>
+                <p class="text-start"><b>请注意</b>，如果您中途退出，将无法获得任何报酬。请勿在实验过程中与其他参与者进行交流。</p>
+                <p class="text-start">如有需要，您可以举手寻求帮助。请确保在整个实验过程中所有电子设备处于静音或飞行模式。感谢您的配合。</p>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+    <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: center;">
+        <div style="margin: 10px 0 30px 0;">
+            <input type="checkbox" required>
+            {% if lang == 'both' %}
+                <label>我已知晓并同意所提供的条款。我自愿参与此行为实验。(I acknowledge and agree to the provided terms. I voluntarily participate in the Behavioral Experiment)</label>
+            {% elif lang == 'en' %}
+                <label>I acknowledge and agree to the provided terms. I voluntarily participate in the Behavioral Experiment.</label>
+            {% elif lang == 'zh' %}
+                <label>我已知晓并同意所提供的条款。我自愿参与此行为实验。</label>
+            {% endif %}
+        </div>
+        {% next_button %}
+    </div>
+
+{% endblock %}
+
+
+{% block scripts %}
+    <script>
+        {% if lang == 'both' %}
+            $(".otree-btn-next").html("下一页 (Next)");
+        {% elif lang == 'en' %}
+            $(".otree-btn-next").html("Next");
+        {% elif lang == 'zh' %}
+            $(".otree-btn-next").html("下一页");
+        {% endif %}
+
+    </script>
+{% endblock %}

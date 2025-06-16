@@ -1,0 +1,78 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    {% if lang == 'both' %}
+        游戏介绍 (Introduction)
+    {% elif lang == 'en' %}
+        Introduction
+    {% elif lang == 'zh' %}
+        游戏介绍
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="card text-center">
+        <div class="card-header">
+            {% if lang == 'both' %}
+                <h2>欢迎参加行为实验 (Welcome to the behavioral experiment)</h2>
+            {% elif lang == 'en' %}
+                <h2>Welcome to the behavioral experiment</h2>
+            {% elif lang == 'zh' %}
+                <h2>欢迎参加行为实验</h2>
+            {% endif %}
+        </div>
+        <div class="card-body">
+            {% if lang == 'both' %}
+                <p class="text-start">在你面前有10个宝箱，其中一些是F类型的宝箱，另一些是J类型的宝箱。一枚金币隐藏在其中一个宝箱内。你的任务是猜测金币藏在哪个 <b>类型</b> 的宝箱内。游戏包含多个回合，在每个回合你都有一次猜测的机会。猜测时需要扣除你现有的积分作为成本。 (In front of you are 10 treasure chests, some of which are type F and others are type J. A gold coin is hidden in one of these chests. Your task is to guess in which <b>type</b> of chest the gold coin is hidden. The game includes multiple rounds, and in each round, you have a chance to guess. Guessing will deduct from your existing points as a cost.)</p>
+                <p class="text-start">每 <b>{{ round_interactions }}</b> 个回合为一个阶段。在每个阶段开始时，你的积分将设置为 <b>{{ init_money }}</b>。你的目标是最大化每个阶段的积分，每个阶段的积分之和就是你在这场游戏中所获得的总积分。(Every <b>{{ round_interactions }}</b> rounds constitute a phase. At the start of each phase, your points will be set to <b>{{ init_money }}</b>. Your goal is to maximize the points in each phase, and the sum of the points from each phase is your total score in the game.)</p>
+                <p class="text-start">每回合，你需要通过从现有积分中扣除一定的比例来下注选择宝箱的类型。可选的比例有： 5%、25%、50%、75%、95%。(Each round, you need to bet by deducting a certain percentage from your existing points to choose the type of chest. The available percentages are: 5%, 25%, 50%, 75%, 95%.)</p>
+                <p class="text-start">如果金币藏在你猜测类型的 <b>任意一个</b> 宝箱内，你就赢了；否则，你就输了。(If the gold coin is hidden in <b>any one</b> of the chests of the type you guessed, you win; otherwise, you lose.)</p>
+                <p class="text-start">如果你赢了，你会获得双倍下注的积分；如果你输了，你什么也得不到。积分将四舍五入为最接近的整数。(If you win, you will receive double the points of your bet; if you lose, you gain nothing. Points are rounded to the nearest whole number.)</p>
+                <p class="text-start"><b>一个重要的游戏设定是：</b>金币的位置在每一回合都是完全随机的，和之前的位置没有任何联系。即每回合的金币位置是相互独立的事件。(<b>An important game setting is:</b> the position of the gold coin is completely random in each round and has no connection to previous locations. That is, each round's coin position is an independent event.)</p>
+            {% elif lang == 'en' %}
+                <p class="text-start">In front of you are 10 treasure chests, some of which are type F and others are type J. A gold coin is hidden in one of these chests. Your task is to guess in which <b>type</b> of chest the gold coin is hidden. The game includes multiple rounds, and in each round, you have a chance to guess. Guessing will deduct from your existing points as a cost.</p>
+                <p class="text-start">Every <b>{{ round_interactions }}</b> rounds constitute a phase. At the start of each phase, your points will be set to <b>{{ init_money }}</b>. Your goal is to maximize the points in each phase, and the sum of the points from each phase is your total score in the game.</p>
+                <p class="text-start">Each round, you need to bet by deducting a certain percentage from your existing points to choose the type of chest. The available percentages are: 5%, 25%, 50%, 75%, 95%.</p>
+                <p class="text-start">If the gold coin is hidden in <b>any one</b> of the chests of the type you guessed, you win; otherwise, you lose.</p>
+                <p class="text-start">If you win, you will receive double the points of your bet; if you lose, you gain nothing. Points are rounded to the nearest whole number.</p>
+                <p class="text-start"><b>An important game setting is:</b> the position of the gold coin is completely random in each round and has no connection to previous locations. That is, each round's coin position is an independent event.</p>
+            {% elif lang == 'zh' %}
+                <p class="text-start">在你面前有10个宝箱，其中一些是F类型的宝箱，另一些是J类型的宝箱。一枚金币隐藏在其中一个宝箱内。你的任务是猜测金币藏在哪个 <b>类型</b> 的宝箱内。游戏包含多个回合，在每个回合你都有一次猜测的机会。猜测时需要扣除你现有的积分作为成本。</p>
+                <p class="text-start">每 <b>{{ round_interactions }}</b> 个回合为一个阶段。在每个阶段开始时，你的积分将设置为 <b>{{ init_money }}</b>。你的目标是最大化每个阶段的积分，每个阶段的积分之和就是你在这场游戏中所获得的总积分。</p>
+                <p class="text-start">每回合，你需要通过从现有积分中扣除一定的比例来下注选择宝箱的类型。可选的比例有： 5%、25%、50%、75%、95%。</p>
+                <p class="text-start">如果金币藏在你猜测类型的 <b>任意一个</b> 宝箱内，你就赢了；否则，你就输了。</p>
+                <p class="text-start">如果你赢了，你会获得双倍下注的积分；如果你输了，你什么也得不到。积分将四舍五入为最接近的整数。</p>
+                <p class="text-start"><b>一个重要的游戏设定是：</b>金币的位置在每一回合都是完全随机的，和之前的位置没有任何联系。即每回合的金币位置是相互独立的事件。</p>
+            {% endif %}
+    </div>
+    <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: center;">
+        <div style="margin: 10px 0 30px 0;">
+            <input type="checkbox" required>
+            {% if lang == 'both' %}
+                <label>我已经了解规则，并清楚怎么最大化得分。(I understand the rules and know how to maximize my score.)</label>
+            {% elif lang == 'en' %}
+                <label>I understand the rules and know how to maximize my score.</label>
+            {% elif lang == 'zh' %}
+                <label>我已经了解规则，并清楚怎么最大化得分。</label>
+            {% endif %}
+        </div>
+        {% next_button %}
+    </div>
+
+{% endblock %}
+
+
+{% block scripts %}
+    <script>
+        {% if lang == 'both' %}
+            $(".otree-btn-next").html("下一页 (Next)");
+        {% elif lang == 'en' %}
+            $(".otree-btn-next").html("Next");
+        {% elif lang == 'zh' %}
+            $(".otree-btn-next").html("下一页");
+        {% endif %}
+
+    </script>
+{% endblock %}

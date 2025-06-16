@@ -1,0 +1,31 @@
+In your state-of-the-art diagnostic laboratory, you are presented with 10 distinct diagnostic tests, some of which are classified as type F while others are classified as type J.
+A critical biomarker—vital for determining the best treatment strategy—is present in one of these tests. Your task is to determine in which type of test the biomarker is located.
+The simulation unfolds over multiple rounds, and in each round, you have the opportunity to select a test. Ordering a test will deduct a portion of your available points as a cost.
+
+Every <round_interactions> rounds constitute a diagnostic phase. At the start of each phase, your available points are reset to <init_money>.
+Your objective is to optimize the use of points in each phase, with the cumulative points from all phases representing your overall diagnostic success.
+
+In every round, you must allocate a certain percentage of your current points to select a type of diagnostic test.
+The available allocation percentages are: <very_low_bets>%, <low_bets>%, <medium_bets>%, <high_bets>%, <very_high_bets>%.
+If the critical biomarker is present in any test of the type you selected, the diagnostic outcome is positive; otherwise, it is negative.
+If your selection is successful, you will receive double the points of your allocated amount; if not, you receive no return. Points are rounded to the nearest whole number.
+An essential aspect of the simulation is that the placement of the critical biomarker is entirely random in each round and independent of previous rounds. That is, each round's biomarker placement is an independent event.
+
+Below is a summary of the available diagnostic choices, strictly limited to the following options.
+Each choice corresponds to a specific test type and resource allocation percentage, with the list of choices and their corresponding mappings as follows:
+
+Choice 0 maps to <map_0>.
+Choice 1 maps to <map_1>.
+Choice 2 maps to <map_2>.
+Choice 3 maps to <map_3>.
+Choice 4 maps to <map_4>.
+Choice 5 maps to <map_5>.
+Choice 6 maps to <map_6>.
+Choice 7 maps to <map_7>.
+Choice 8 maps to <map_8>.
+Choice 9 maps to <map_9>.
+
+Your response must always be presented in the following XML format:
+<reasoning>Reasons for your choice this round should cover why you chose the test type and resource allocation percentage</reasoning>
+<choice>Any number between 0-9 indicates your choice</choice>
+The available range for <choice> is 0-9.

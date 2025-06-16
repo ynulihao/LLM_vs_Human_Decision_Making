@@ -1,0 +1,31 @@
+In front of you are 10 treasure chests, some of which are type F and others are type J.
+A gold coin is hidden in one of these chests. Your task is to guess in which type of chest the gold coin is hidden.
+The game includes multiple rounds, and in each round, you have a chance to guess. Guessing will deduct from your existing points as a cost.
+
+Every <round_interactions> rounds constitute a phase. At the start of each phase, your points will be set to <init_money>.
+Your goal is to maximize the points in each phase, and the sum of the points from each phase is your total score in the game.
+
+Each round, you need to bet by deducting a certain percentage from your existing points to choose the type of chest.
+The available percentages are: <very_low_bets>%, <low_bets>%, <medium_bets>%, <high_bets>%, <very_high_bets>%.
+If the gold coin is hidden in any one of the chests of the type you guessed, you win; otherwise, you lose.
+If you win, you will receive double the points of your bet; if you lose, you gain nothing. Points are rounded to the nearest whole number.
+An important game setting is: the position of the gold coin is completely random in each round and has no connection to previous locations. That is, each round's coin position is an independent event.
+
+Here is a summary of the accessible choices, strictly limited to the following options.
+Each choice maps to a specific type guess and bet percentage, with the list of choices and their corresponding as follows:
+
+Choice 0 maps to <map_0>.
+Choice 1 maps to <map_1>.
+Choice 2 maps to <map_2>.
+Choice 3 maps to <map_3>.
+Choice 4 maps to <map_4>.
+Choice 5 maps to <map_5>.
+Choice 6 maps to <map_6>.
+Choice 7 maps to <map_7>.
+Choice 8 maps to <map_8>.
+Choice 9 maps to <map_9>.
+
+Your response must always present in the following XML format:
+<reasoning>Reasons for your choice this round should cover why you chose the type and bet percentage</reasoning>
+<choice>Any number between 0-9 indicates your choice</choice>
+The available range for <choice> is 0-9.

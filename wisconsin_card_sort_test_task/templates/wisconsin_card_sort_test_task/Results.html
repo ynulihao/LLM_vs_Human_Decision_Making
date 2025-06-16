@@ -1,0 +1,217 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    {% if lang == 'both' %}
+        本回合游戏结果 (Results in this round)
+    {% elif lang == 'en' %}
+        Results in this round
+    {% elif lang == 'zh' %}
+        本回合游戏结果
+    {% endif %}
+{% endblock %}
+
+{% block styles %}
+    <style>
+        .table-success-border {
+            border: 6px solid green;
+        }
+
+        .table-danger-border {
+            border: 6px solid red;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="{% static "wisconsin_card_sort_test_task/css/style.css" %}">
+
+{% endblock %}
+
+{% block content %}
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {% if lang == 'both' %}
+                <li class="breadcrumb-item">第{{ round }}轮(Round {{ round }})</li>
+            {% elif lang == 'en' %}
+                <li class="breadcrumb-item">Round {{ round }}</li>
+            {% elif lang == 'zh' %}
+                <li class="breadcrumb-item">第{{ round }}轮</li>
+            {% endif %}
+        </ol>
+    </nav>
+
+    {% if payoff > 0 %}
+        <div class="alert alert-success" role="alert">
+            {% if lang == 'both' %}
+                匹配成功。Match Correct.
+            {% elif lang == 'en' %}
+                Match Correct.
+            {% elif lang == 'zh' %}
+                匹配成功。
+            {% endif %}
+        </div>
+        {{ else }}
+        <div class="alert alert-danger" role="alert">
+            {% if lang == 'both' %}
+                匹配失败。Match Failed.
+            {% elif lang == 'en' %}
+                Match Failed.
+            {% elif lang == 'zh' %}
+                匹配失败。
+            {% endif %}
+        </div>
+    {% endif %}
+
+    <div class="container text-center">
+        <div style="font-size: 1.2rem; text-align: center; color: black; margin-top: 20px; margin-bottom: 20px;">
+
+            <div class="container mt-5">
+                <div class="row text-center">
+                    {% for card in choice_order %}
+                        <div class="col-md-3">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    {% if use_fig %}
+                                        <table class="table text-center
+                            {% if chosen_idx == card.idx and payoff == 1 %}
+                                 table-success-border
+                            {% elif chosen_idx == card.idx and payoff == 0 %}
+                                 table-danger-border
+                            {% endif %}
+                        ">
+                                            {% for row in card.grid %}
+                                                <tr>
+                                                    {% for cell in row %}
+                                                        <td>
+                                                            {% if cell %}
+                                                                {% if card.shape == 'circle' %}
+                                                                    <div class="circle"
+                                                                         style="color: {{ card.color }};">{{ display_symbols.0 }}</div>
+                                                                {% elif card.shape == 'triangle' %}
+                                                                    <div class="triangle"
+                                                                         style="color: {{ card.color }};">{{ display_symbols.1 }}</div>
+                                                                {% elif card.shape == 'crosses' %}
+                                                                    <div class="crosses"
+                                                                         style="color: {{ card.color }};">{{ display_symbols.2 }}</div>
+                                                                {% elif card.shape == 'star' %}
+                                                                    <span class="star"
+                                                                          style="color: {{ card.color }};">{{ display_symbols.3 }}</span>
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        </td>
+                                                    {% endfor %}
+                                                </tr>
+                                            {% endfor %}
+                                        </table>
+                                    {% endif %}
+                                    {% if lang == 'both' %}
+                                        <div>箱子 {{ card.idx }} 上的符号</div>
+                                        <div>The symbols on chest {{ card.idx }}</div>
+                                    {% elif lang == 'en' %}
+                                        <div>The symbols on chest {{ card.idx }}</div>
+                                    {% elif lang == 'zh' %}
+                                        <div>箱子 {{ card.idx }} 上的符号</div>
+                                        {% if not use_fig %}
+                                            <div class="                            {% if chosen_idx == card.idx and payoff == 1 %}
+                                 table-success-border
+                            {% elif chosen_idx == card.idx and payoff == 0 %}
+                                 table-danger-border
+                            {% endif %}">{{ card.count }} {{ card.color }} {{ card.shape }}</div>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="row text-center d-flex justify-content-center align-items-center">
+                {% for card in item_card %}
+                    <div class="col-md-3">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                {% if use_fig %}
+                                    <table class="table text-center">
+                                        {% for row in card.grid %}
+                                            <tr>
+                                                {% for cell in row %}
+                                                    <td>
+                                                        {% if cell %}
+                                                            {% if card.shape == 'circle' %}
+                                                                <div class="circle"
+                                                                     style="color: {{ card.color }};">{{ display_symbols.0 }}</div>
+                                                            {% elif card.shape == 'triangle' %}
+                                                                <div class="triangle"
+                                                                     style="color: {{ card.color }};">{{ display_symbols.1 }}</div>
+                                                            {% elif card.shape == 'crosses' %}
+                                                                <div class="crosses"
+                                                                     style="color: {{ card.color }};">{{ display_symbols.2 }}</div>
+                                                            {% elif card.shape == 'star' %}
+                                                                <span class="star"
+                                                                      style="color: {{ card.color }};">{{ display_symbols.3 }}</span>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    </td>
+                                                {% endfor %}
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                {% endif %}
+                                {% if lang == 'both' %}
+                                    <div>当前物品上的符号</div>
+                                    <div>The symbols on the current item</div>
+                                {% elif lang == 'en' %}
+                                    <div>The symbols on the current item</div>
+                                {% elif lang == 'zh' %}
+                                    <div>当前物品上的符号</div>
+                                    {% if not use_fig %}
+                                        <div>{{ card.count }} {{ card.color }} {{ card.shape }}</div>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="row text-center">
+        {% next_button %}
+    </div>
+
+    </div>
+
+
+    {% if debug %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="alert alert-secondary alert-dismissible show" role="alert">
+                        <h5 class="alert-heading">调试信息 (Debug)</h5>
+                        <hr>
+                        <table class="table table-sm text-center">
+                            <tbody>
+                            <tr>
+                                <td>玩家原始编号 (Player original ID)</td>
+                                <td><strong>{{ participant.id_in_session }}</strong></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        {% if lang == 'both' %}
+            $(".otree-btn-next").html("下一页 (Next)");
+        {% elif lang == 'en' %}
+            $(".otree-btn-next").html("Next");
+        {% elif lang == 'zh' %}
+            $(".otree-btn-next").html("下一页");
+        {%  endif %}
+    </script>
+{% endblock %}

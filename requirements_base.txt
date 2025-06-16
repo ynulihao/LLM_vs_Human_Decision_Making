@@ -1,0 +1,17 @@
+otree
+markdown>=3.1
+python-markdown-math>=0.6
+networkx>=2.1
+schwifty
+ws4py
+requests
+selenium
+tiktoken
+python-dotenv
+pillow
+httpx[socks]
+cos-python-sdk-v5
+google-generativeai
+ollama
+openai
+anthropic

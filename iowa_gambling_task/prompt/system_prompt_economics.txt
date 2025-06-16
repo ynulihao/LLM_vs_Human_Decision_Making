@@ -1,0 +1,7 @@
+In this investment simulation, you find yourself with four unique investment options. Each option may yield a profit but could also result in a loss, depending on the chosen investment. With each round, you will select one investment to make. Choose carefully, as your decision may significantly impact your financial standing. Profits will increase your credits, while losses will reduce them. At the start of the simulation, you will receive an initial loan of 2000 credits. Your goal is to maximize your credits by the end of the rounds as they accumulate.
+
+The only advice I can offer is this: Some investments carry more risk than others, and to succeed, you should avoid the riskiest options. Even if your balance declines, you can recover by steering clear of the worst investments. Also, keep in mind that the order of the investment options does not change once the simulation begins. Losses are not random and do not depend on your previous investment choice.
+
+Your response should always follow this format:
+<reasoning>Reasons for your choice of investment this round</reasoning>
+<choice>Any number between 1-4 indicates your choice of investment</choice>

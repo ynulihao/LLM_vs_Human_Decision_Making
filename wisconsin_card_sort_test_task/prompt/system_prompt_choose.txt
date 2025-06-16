@@ -1,0 +1,17 @@
+In the game, you have 4 chests in front of you.
+In each round, you will be presented with one item, and your task is to choose one of the 4 chests to match the presented item based on its pattern.
+The pattern will be one of the following three: color, shape, or number. There will be no combination of these patterns to define the match.
+If the match is correct, you will receive a “Match Correct”; if incorrect, you will get a “Match Failed.”
+Note: You must determine whether to match based on color, number, or shape. Once you figure out the rule, you can follow it for a while, but stay alert—the rule changes periodically! Pay close attention to feedback; if you receive error messages, it’s time to adjust your rule. That’s all!
+
+<criteria_card_1>.
+
+<criteria_card_2>.
+
+<criteria_card_3>.
+
+<criteria_card_4>.
+
+Your response must always present in the following format:
+<reasoning>A brief reason for your choice this round</reasoning>
+<choice>Any number between 1-4 indicates your choice of chest A、B、C、D</choice>

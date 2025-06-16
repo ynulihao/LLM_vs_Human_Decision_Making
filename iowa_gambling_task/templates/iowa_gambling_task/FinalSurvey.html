@@ -1,0 +1,97 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    {% if lang == 'both' %}
+        实验问卷
+    {% elif lang == 'en' %}
+        Survey Items
+    {% elif lang == 'zh' %}
+        实验问卷
+    {% endif %}
+{% endblock %}
+
+{% block styles %}
+    <style>
+        .para-text {
+            line-height: 2rem;
+            font-size: 1.1rem;
+            padding: 30px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    {% if lang == 'both' %}
+        <div class="para-text">
+            <h5>在进行游戏的过程中：</h5>
+            {% formfield player.final_survey_group_1_q1_choice %}
+            {% formfield player.final_survey_group_1_q2_choice %}
+            {% formfield player.final_survey_group_1_q3_choice %}
+            {% formfield player.final_survey_group_1_q4_choice %}
+            <br>
+            <h5>这项游戏：</h5>
+            {% formfield player.final_survey_group_2_q1_choice %}
+            {% formfield player.final_survey_group_2_q2_choice %}
+            <br>
+            <h5>我认为：</h5>
+            {% formfield player.final_survey_group_3_q1_choice %}
+            {% formfield player.final_survey_group_3_q2_choice %}
+            {% formfield player.final_survey_group_3_q3_choice %}
+            {% formfield player.final_survey_group_3_q4_choice %}
+            <br>
+            <h5>当前人工智能的每轮的表现为({{ gpt_mean }}±{{ gpt_std }})，你的每轮的平均得分是{{ total_payoff }}；如果再进行一场游戏，我愿意：</h5>
+            {% formfield player.final_survey_group_4_q1_choice %}
+            {% formfield player.final_survey_group_4_q2_choice %}
+            {% next_button %}
+        </div>
+    {% elif lang == 'en' %}
+        <div class="para-text">
+            <h5>During the game:</h5>
+            {% formfield player.final_survey_group_1_q1_choice %}
+            {% formfield player.final_survey_group_1_q2_choice %}
+            {% formfield player.final_survey_group_1_q3_choice %}
+            {% formfield player.final_survey_group_1_q4_choice %}
+            <br>
+            <h5>This game:</h5>
+            {% formfield player.final_survey_group_2_q1_choice %}
+            {% formfield player.final_survey_group_2_q2_choice %}
+            <br>
+            <h5>I think:</h5>
+            {% formfield player.final_survey_group_3_q1_choice %}
+            {% formfield player.final_survey_group_3_q2_choice %}
+            {% formfield player.final_survey_group_3_q3_choice %}
+            {% formfield player.final_survey_group_3_q4_choice %}
+            <br>
+            <h5>The current performance of the AI per round is ({{ gpt_mean }}±{{ gpt_std }}), and your average score
+                per round is {{ total_payoff }}; if there were another game, I would be willing to:</h5>
+            {% formfield player.final_survey_group_4_q1_choice %}
+            {% formfield player.final_survey_group_4_q2_choice %}
+            {% next_button %}
+        </div>
+    {% elif lang == 'zh' %}
+        <div class="para-text">
+            <h5>在进行游戏的过程中：</h5>
+            {% formfield player.final_survey_group_1_q1_choice %}
+            {% formfield player.final_survey_group_1_q2_choice %}
+            {% formfield player.final_survey_group_1_q3_choice %}
+            {% formfield player.final_survey_group_1_q4_choice %}
+            <br>
+            <h5>这项游戏：</h5>
+            {% formfield player.final_survey_group_2_q1_choice %}
+            {% formfield player.final_survey_group_2_q2_choice %}
+            <br>
+            <h5>我认为：</h5>
+            {% formfield player.final_survey_group_3_q1_choice %}
+            {% formfield player.final_survey_group_3_q2_choice %}
+            {% formfield player.final_survey_group_3_q3_choice %}
+            {% formfield player.final_survey_group_3_q4_choice %}
+            <br>
+            <h5>当前人工智能的每轮的表现为({{ gpt_mean }}±{{ gpt_std }})，你的每轮的平均得分是{{ total_payoff }}；如果再进行一场游戏，我愿意：</h5>
+            {% formfield player.final_survey_group_4_q1_choice %}
+            {% formfield player.final_survey_group_4_q2_choice %}
+            {% next_button %}
+        </div>
+    {% endif %}
+{% endblock %}

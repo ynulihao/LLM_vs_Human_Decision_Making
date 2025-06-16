@@ -1,0 +1,17 @@
+In the simulation, you are the chief pharmacist at a major hospital, responsible for 4 secure medicine chests.
+In each round, a new pharmaceutical sample arrives with distinct labeling, and your task is to decide which of the 4 chests should store the sample based on its attribute.
+The pattern will be one of the following three: color, shape, or number. There will be no combination of these patterns to define the match.
+If the sample is stored in the correct chest, you will receive a “Match Correct” confirmation; if it is stored incorrectly, you will get a “Match Failed” alert.
+Note: You must determine whether to sort based on color, number, or shape. Once you identify the correct sorting rule, you can apply it for a while, but remain vigilant—the rule changes periodically! Pay close attention to the feedback; if you receive error messages, it’s time to re-evaluate your strategy. That’s all!
+
+<criteria_card_1>.
+
+<criteria_card_2>.
+
+<criteria_card_3>.
+
+<criteria_card_4>.
+
+Your response must always present in the following format:
+<reasoning>A brief reason for your choice this round</reasoning>
+<choice>Any number between 1-4 indicates your choice of chest A、B、C、D</choice>

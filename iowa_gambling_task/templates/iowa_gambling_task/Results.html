@@ -1,0 +1,162 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    {% if lang == 'both' %}
+        本回合游戏结果 (Results in this round)
+    {% elif lang == 'en' %}
+        Results in this round
+    {% elif lang == 'zh' %}
+        本回合游戏结果
+    {% endif %}
+{% endblock %}
+
+{% block styles %}
+    <style>
+        .red {
+            color: #c00000;
+        }
+
+        .green {
+            color: #538135;
+        }
+
+        .blue {
+            color: #2f5496;
+        }
+        
+        .horbox {
+            display: flex;
+            align-items: center;
+        }
+
+        img {
+            width: 10vw;
+        }
+
+        .alert-border {
+            border: 8px solid red;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="{% static "iowa_gambling_task/css/style.css" %}">
+
+{% endblock %}
+
+{% block content %}
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {% if lang == 'both' %}
+                <li class="breadcrumb-item">第{{ round }}轮(Round {{ round }})</li>
+            {% elif lang == 'en' %}
+                <li class="breadcrumb-item">Round {{ round }}</li>
+            {% elif lang == 'zh' %}
+                <li class="breadcrumb-item">第{{ round }}轮</li>
+            {% endif %}
+        </ol>
+    </nav>
+    <div class="container text-center">
+
+        <div class="row">
+            {% for i in card_num_for_loop %}
+                <div class="col">
+                    <div class="verbox">
+                        {% if choice == forloop.counter0 %}
+                            <img src="{% static "iowa_gambling_task/image/box.jpg" %}" class="alert-border" alt="卡片{{ i }}">
+                        {% else %}
+                            <img src="{% static "iowa_gambling_task/image/box.jpg" %}" alt="卡片{{ i }}">
+                        {% endif %}
+
+                        {% if lang == 'both' %}
+                            宝箱{{ i }}(Chest{{ i }})
+                        {% elif lang == 'en' %}
+                            <b>Chest{{ i }}</b>
+                        {% elif lang == 'zh' %}
+                            <b>宝箱{{ i }}</b>
+                        {% endif %}
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+
+
+        <div style="font-size: 1.2rem; text-align: center; color: black; margin-top: 20px; margin-bottom: 20px;">
+            {% if lang == 'both' %}
+                此回合您获得了(This round you earned)：
+                {{ if penalty > 0}}
+                    <b class="green"  style="font-size: 1.3em;">{{ reward }} 点(points)</b>
+                    <b class="red"  style="font-size: 1.3em;">{{ penalty }} 点(points)</b>
+                {{ else }}
+                    <b class="green"  style="font-size: 1.3em;">{{ reward }} 点(points)</b>
+                {{ endif }}
+                <hr>
+                你目前总共获得了(Your total points so far)：<b style="font-size: 1.3em;">{{ remain }} 点(points)</b>
+            {% elif lang == 'en' %}
+                {{ if penalty > 0}}
+                    This round you earned: 
+                    <b class="green"  style="font-size: 1.3em;">{{ reward }} points</b><br>
+                    This round you lost:
+                    <b class="red"  style="font-size: 1.3em;">{{ penalty }} points</b>
+                {{ else }}
+                    This round you earned:
+                    <b class="green"  style="font-size: 1.3em;">{{ reward }} points</b>
+                {{ endif }}
+                <hr>
+                Your total points so far：<b style="font-size: 1.3em;">{{ remain }} points</b>
+            {% elif lang == 'zh' %}
+
+                {{ if penalty > 0}}
+                    本回合您获得了：
+                    <b class="green"  style="font-size: 1.3em;">{{ reward }} 点</b><br>
+                    但同时您损失了：
+                    <b class="red"  style="font-size: 1.3em;">{{ penalty }} 点</b>
+                {{ else }}
+                    此回合您获得了：
+                    <b class="green"  style="font-size: 1.3em;">{{ reward }} 点</b>
+                {{ endif }}
+                <hr>
+                你目前总共获得了：<b style="font-size: 1.3em;">{{ remain }} 点</b>
+            {% endif %}
+        </div>
+
+        <div class="row">
+            {% next_button %}
+        </div>
+
+    </div>
+
+
+    {% if debug %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="alert alert-secondary alert-dismissible show" role="alert">
+                        <h5 class="alert-heading">调试信息 (Debug)</h5>
+                        <hr>
+                        <table class="table table-sm text-center">
+                            <tbody>
+                            <tr>
+                                <td>玩家原始编号 (Player original ID)</td>
+                                <td><strong>{{ participant.id_in_session }}</strong></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        {% if lang == 'both' %}
+            $(".otree-btn-next").html("下一页 (Next)");
+        {% elif lang == 'en' %}
+            $(".otree-btn-next").html("Next");
+        {% elif lang == 'zh' %}
+            $(".otree-btn-next").html("下一页");
+        {%  endif %}
+    </script>
+{% endblock %}

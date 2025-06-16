@@ -1,0 +1,94 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    登记成功{% if en %} (Recorded Successfully){% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            参与者信息{% if en %} (Participant information){% endif %}
+        </div>
+        <div class="card-body" style="margin-left: 20%; width: 60%">
+            <table class="table table-sm table-hover">
+                <tbody>
+                <tr>
+                    <th scope="row" class="text-center">{{ lbl.game_id }}</th>
+                    <td><b class="text-info">{{ player.game_id }}</b></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-center">{{ lbl.name }}</th>
+                    <td><b class="text-info">{{ player.name }}</b></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-center">{{ lbl.contact }}</th>
+                    <td><b class="text-info">{{ player.contact }}</b></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-center">{{ lbl.student_id }}</th>
+                    <td><b class="text-info">{{ player.student_id }}</b></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-center">{{ lbl.school }}</th>
+                    <td><b class="text-info">{{ player.school }}</b></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-center">{{ lbl.major }}</th>
+                    <td><b class="text-info">{{ player.major }}</b></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-center">{{ lbl.nation }}</th>
+                    <td><b class="text-info">{{ player.nation }}</b></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-center">{{ lbl.gender }}</th>
+                    <td><b class="text-info">{{ gender }}</b></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-center">{{ lbl.age }}</th>
+                    <td><b class="text-info">{{ player.age }}</b></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-center">{{ lbl.country }}</th>
+                    <td><b class="text-info">{{ player.country }}</b></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-center">{{ lbl.birthplace }}</th>
+                    <td><b class="text-info">{{ player.birthplace }}</b></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-center">{{ lbl.religion }}</th>
+                    <td><b class="text-info">{{ player.religion }}</b></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-center">{{ lbl.alipay }}</th>
+                    <td><b class="text-info">{{ player.alipay }}</b></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer text-muted">
+            （以上信息若填写有误，请联系实验组织人员更正。）
+            {% if en %}<br/>(If the information is wrong, please contact our teaching assistant to correct
+                it.){% endif %}
+        </div>
+    </div>
+
+    <div class="alert alert-info" style="margin-top: 20px">
+        <p>
+            我们将会核实您的信息并与您联系。<br/>
+            {% if en %}We will check your information, and contact with you.<br/>{% endif %}
+            实验费用将会在实验结束后的一段时间内以校园卡、银行卡或支付宝的方式发放。<br/>
+            {% if en %}{# Trans #}{% endif %}
+            {% if not collect_info_first %}
+                实验结束，感谢您的参与。
+                {% if en %}<br/>The experiment is over. Thanks for your attendance.{% endif %}
+            {% endif %}
+        </p>
+    </div>
+
+    {% if collect_info_first %}
+        {% next_button %}
+    {% endif %}
+{% endblock %}

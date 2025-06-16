@@ -1,0 +1,118 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    {% if lang == 'both' %}
+        游戏介绍 (Introduction)
+    {% elif lang == 'en' %}
+        Introduction
+    {% elif lang == 'zh' %}
+        游戏介绍
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            {% if lang == 'both' %}
+                <h2 class="text-center">欢迎参加行为实验 (Welcome to the behavioral experiment)</h2>
+            {% elif lang == 'en' %}
+                <h2 class="text-center">Welcome to the behavioral experiment</h2>
+            {% elif lang == 'zh' %}
+                <h2 class="text-center">欢迎参加行为实验</h2>
+            {% endif %}
+        </div>
+        <div class="card-body">
+            {% if lang == 'both' %}
+                <p class="text-start">
+                    在游戏中，你的面前有四个宝箱。
+                </p>
+                <p class="text-start">
+                    每一轮，你都会看到一个物品，你需要根据该物品的某种特征来选择四个宝箱中的一个与之匹配。
+                </p>
+                <p class="text-start">
+                    物品的特征仅可能来自以下三种：颜色、形状或数量（不会同时结合多种特征）
+                </p>
+                <p class="text-start">
+                    如果你匹配正确，将会出现“匹配正确”的提示；如果匹配错误，则会出现“匹配失败”的提示。
+                </p>
+                <p class="text-start"><strong>请注意：</strong>你必须根据颜色、形状或数量来判断当前的匹配规则。一旦掌握了当前的规则，你可以暂时一直按照它来进行匹配，但要时刻保持警惕——规则会定期更换！密切关注反馈信息，如果你发现出现了错误提示，那就意味着需要重新调整你的匹配规则。以上就是全部内容了！
+                </p>
+                <p class="text-start">
+                    In the game, you have 4 chests in front of you.
+                </p>
+                <p class="text-start">
+                    In each round, you will be presented with one item, and your task is to choose one of the 4 chests to match the presented item based on its pattern.
+                </p>
+                <p class="text-start">
+                    The pattern will be one of the following three: color, shape, or number. There will be no combination of these patterns to define the match.
+                </p>
+                <p class="text-start">
+                    If the match is correct, you will receive a “Match Correct”; if incorrect, you will get a “Match Failed.”
+                </p>
+                <p class="text-start"><strong>Note: </strong>You must determine whether to match based on color, number, or shape. Once you figure out the rule, you can follow it for a while, but stay alert—the rule changes periodically! Pay close attention to feedback; if you receive error messages, it’s time to adjust your rule. That’s all!
+                </p>
+            {% elif lang == 'en' %}
+                <p class="text-start">
+                    In the game, you have 4 chests in front of you.
+                </p>
+                <p class="text-start">
+                    In each round, you will be presented with one item, and your task is to choose one of the 4 chests to match the presented item based on its pattern.
+                </p>
+                <p class="text-start">
+                    The pattern will be one of the following three: color, shape, or number. There will be no combination of these patterns to define the match.
+                </p>
+                <p class="text-start">
+                    If the match is correct, you will receive a “Match Correct”; if incorrect, you will get a “Match Failed.”
+                </p>
+                <p class="text-start"><strong>Note: </strong>You must determine whether to match based on color, number, or shape. Once you figure out the rule, you can follow it for a while, but stay alert—the rule changes periodically! Pay close attention to feedback; if you receive error messages, it’s time to adjust your rule. That’s all!
+                </p>
+            {% elif lang == 'zh' %}
+                <p class="text-start">
+                    在游戏中，你的面前有四个宝箱。
+                </p>
+                <p class="text-start">
+                    每一轮，你都会看到一个物品，你需要根据该物品的某种特征来选择四个宝箱中的一个与之匹配。
+                </p>
+                <p class="text-start">
+                    物品的特征仅可能来自以下三种：颜色、形状或数量（不会同时结合多种特征）
+                </p>
+                <p class="text-start">
+                    如果你匹配正确，将会出现“匹配正确”的提示；如果匹配错误，则会出现“匹配失败”的提示。
+                </p>
+                <p class="text-start"><strong>请注意：</strong>你必须根据颜色、形状或数量来判断当前的匹配规则。一旦掌握了当前的规则，你可以暂时一直按照它来进行匹配，但要时刻保持警惕——规则会定期更换！密切关注反馈信息，如果你发现出现了错误提示，那就意味着需要重新调整你的匹配规则。以上就是全部内容了！
+                </p>
+            {% endif %}
+        </div>
+    </div>
+    <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: center;">
+        <div style="margin: 10px 0 30px 0;">
+            <input type="checkbox" required>
+            {% if lang == 'both' %}
+                <label>我已经了解规则，并清楚怎么最大化得分。(I understand the rules and know how to maximize my
+                    score.)</label>
+            {% elif lang == 'en' %}
+                <label>I understand the rules and know how to maximize my score.</label>
+            {% elif lang == 'zh' %}
+                <label>我已经了解规则，并清楚怎么最大化得分。</label>
+            {% endif %}
+        </div>
+        {% next_button %}
+    </div>
+
+{% endblock %}
+
+
+{% block scripts %}
+    <script>
+        {% if lang == 'both' %}
+            $(".otree-btn-next").html("下一页 (Next)");
+        {% elif lang == 'en' %}
+            $(".otree-btn-next").html("Next");
+        {% elif lang == 'zh' %}
+            $(".otree-btn-next").html("下一页");
+        {% endif %}
+
+    </script>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    {% if lang == 'both' %}
+        游戏介绍 (Introduction)
+    {% elif lang == 'en' %}
+        Introduction
+    {% elif lang == 'zh' %}
+        游戏介绍
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            {% if lang == 'both' %}
+                <h2 class="text-center">欢迎参加行为实验 (Welcome to the behavioral experiment)</h2>
+            {% elif lang == 'en' %}
+                <h2 class="text-center">Welcome to the behavioral experiment</h2>
+            {% elif lang == 'zh' %}
+                <h2 class="text-center">欢迎参加行为实验</h2>
+            {% endif %}
+        </div>
+        <div class="card-body">
+            {% if lang == 'both' %}
+                <p class="text-start">
+                    在这个游戏中，你的面前有四个箱子。每个箱子含有未知的物品，可能是奖励也可能是惩罚。每轮游戏中，你将选择一个箱子来打开，你会获得奖励，但同时有可能额外获得惩罚。请仔细考虑，因为你的策略可能会显著影响你的得分。一开始你将会有 {{ init_money }} 分的初始积分。游戏包含若干轮，你的分数会累计，你的目标是在游戏结束时使你的分数最大化。</p>
+                <p class="text-start"><strong>注意事项：</strong>在这些箱子中，<b>有些箱子总体表现较差</b>，要想赢得游戏，你应该尽量避开那些坏箱子。不管你觉得自己输了多少，只要你避开最糟糕的箱子，你仍然有机会赢得游戏。请注意，<b>一旦游戏开始，计算机不会改变宝箱的顺序。它不会随机让你输，也不会根据你上次选择的宝箱使你输钱。</b>
+                </p>
+                <p class="card-text"><br>In this game, you find yourself in a mysterious room with four ancient treasure
+                    chests. Each chest holds an unknown thing that can be either a reward or a penalty. With each turn,
+                    you will choose one chest to open. Please consider carefully as your choice may significantly impact
+                    your points. Specifically, the rewards will increase your points, while penalties will deduct your
+                    points. The game has several rounds in which you points will accumulate, and your goal is to
+                    maximize your points by the end of the game.
+                    <strong>The only hint I can give you</strong>, and the most important thing to note is this: Out of
+                    these chests,
+                    there are some that are worse than others, and to win you should try to stay away from bad chests.
+                    No matter how much you find yourself losing, you can still win the game if you avoid the worst
+                    chests. Also note that the computer does not change the order of the chests once the game begins. It
+                    does not make you lose at random, or make you lose money based on the last chest you picked.</p>
+            {% elif lang == 'en' %}
+                <p class="card-start"><br>In this game, you find yourself in a mysterious room with four ancient treasure
+                    chests. Each chest holds an unknown thing that can be either a reward or a penalty. With each turn,
+                    you will choose one chest to open. Please consider carefully as your choice may significantly impact
+                    your points. Specifically, the rewards will increase your points, while penalties will deduct your
+                    points. The game has several rounds in which you points will accumulate, and your goal is to
+                    maximize your points by the end of the game.
+                </p>
+                <p class="text-start">
+                    <strong>The only hint I can give you</strong>, and the most important thing to note is this: Out of
+                    these chests, there are some that are worse than others, and to win you should try to stay away from bad chests.
+                    No matter how much you find yourself losing, you can still win the game if you avoid the worst
+                    chests. Also note that the computer does not change the order of the chests once the game begins. It
+                    does not make you lose at random, or make you lose money based on the last chest you picked.
+                </p>
+            {% elif lang == 'zh' %}
+                <div class="card-text">
+                    <br>
+                    <p class="text-start">
+                        在这个游戏中，你的面前有四个箱子。每个箱子含有未知的物品，可能是奖励也可能是惩罚。每轮游戏中，你将选择一个箱子来打开，你会获得奖励，但同时有可能额外获得惩罚。请仔细考虑，因为你的策略可能会显著影响你的得分。一开始你将会有 {{ init_money }} 分的初始积分。游戏包含若干轮，你的分数会累计，你的目标是在游戏结束时使你的分数最大化。</p>
+                    <p class="text-start"><strong>注意事项：</strong>在这些箱子中，<b>有些箱子总体表现较差</b>，要想赢得游戏，你应该尽量避开那些坏箱子。不管你觉得自己输了多少，只要你避开最糟糕的箱子，你仍然有机会赢得游戏。请注意，<b>一旦游戏开始，计算机不会改变宝箱的顺序。它不会随机让你输，也不会根据你上次选择的宝箱使你输钱。</b>
+                    </p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: center;">
+        <div style="margin: 10px 0 30px 0;">
+            <input type="checkbox" required>
+            {% if lang == 'both' %}
+                <label>我已经了解规则，并清楚怎么最大化得分。(I understand the rules and know how to maximize my score.)</label>
+            {% elif lang == 'en' %}
+                <label>I understand the rules and know how to maximize my score.</label>
+            {% elif lang == 'zh' %}
+                <label>我已经了解规则，并清楚怎么最大化得分。</label>
+            {% endif %}
+        </div>
+        {% next_button %}
+    </div>
+
+{% endblock %}
+
+
+{% block scripts %}
+    <script>
+        {% if lang == 'both' %}
+            $(".otree-btn-next").html("下一页 (Next)");
+        {% elif lang == 'en' %}
+            $(".otree-btn-next").html("Next");
+        {% elif lang == 'zh' %}
+            $(".otree-btn-next").html("下一页");
+        {% endif %}
+
+    </script>
+{% endblock %}

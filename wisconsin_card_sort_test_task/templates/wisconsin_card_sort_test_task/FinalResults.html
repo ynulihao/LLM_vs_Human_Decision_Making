@@ -1,0 +1,69 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    {% if lang == 'both' %}
+        最终游戏结果 (Final results)
+    {% elif lang == 'en' %}
+        Final results
+    {% elif lang == 'zh' %}
+        最终游戏结果
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="alert alert-primary" role="alert">
+        {% if lang == 'both' %}
+            <h4 class="alert-heading">最终收益信息 (Final payoff)</h4>
+        {% elif lang == 'en' %}
+            <h4 class="alert-heading">Final payoff</h4>
+        {% elif lang == 'zh' %}
+            <h4 class="alert-heading">最终收益信息</h4>
+        {% endif %}
+        <hr>
+
+        {% if lang == 'both' %}
+            <p style="font-size: larger">
+                你的剩余财富：<strong>{{ player.remain|json }}</strong><br>
+                (Your remain: <strong>{{ player.remain|json }}</strong>)
+            </p>
+        {% elif lang == 'en' %}
+            <p style="font-size: larger">
+                Your remain: <strong>{{ player.remain|json }}</strong>
+            </p>
+        {% elif lang == 'zh' %}
+            <p style="font-size: larger">
+                你的剩余财富：<strong>{{ player.remain|json }}</strong>
+            </p>
+        {% endif %}
+    </div>
+
+    {% if has_upcoming_apps %}
+        <div class="alert alert-success" role="alert">
+            {% if lang == 'both' %}
+                请点击下一页登记信息。<br>
+                (Please click "Next" to record your information.)
+            {% elif lang == 'en' %}
+                Please click "Next" to record your information.
+            {% elif lang == 'zh' %}
+                请点击下一页登记信息。
+            {%  endif %}
+        </div>
+
+        {% next_button %}
+
+    {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        {% if lang == 'both' %}
+            $(".otree-btn-next").html("下一页 (Next)");
+        {% elif lang == 'en' %}
+            $(".otree-btn-next").html("Next");
+        {% elif lang == 'zh' %}
+            $(".otree-btn-next").html("下一页");
+        {%  endif %}
+    </script>
+{% endblock %}

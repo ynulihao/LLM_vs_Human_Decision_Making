@@ -1,0 +1,286 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    {% if lang == 'both' %}
+        选择你的选项 (Choose Your Choice)
+    {% elif lang == 'en' %}
+        Choose Your Choice
+    {% elif lang == 'zh' %}
+        选择你的选项
+    {% endif %}
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static "cambridge_gambling_task/css/style.css" %}">
+    <style>
+        .box {
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            color: white;
+            border: 2px solid black; /* 黑色边框 */
+        }
+
+        .blue-box {
+            background-color: #4f71be;
+        }
+
+        .red-box {
+            background-color: #b02418;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {% if lang == 'both' %}
+                <li class="breadcrumb-item">第{{ round }}轮(Round {{ round }})</li>
+            {% elif lang == 'en' %}
+                <li class="breadcrumb-item">Round {{ round }}</li>
+            {% elif lang == 'zh' %}
+                <li class="breadcrumb-item">第{{ round }}轮</li>
+            {% endif %}
+        </ol>
+    </nav>
+    <div class="alert alert-info" role="alert">
+        {% if lang == 'both' %}
+            请从下列的选项中选择一个。<br>
+            (Please choose one of the following choices.)
+        {% elif lang == 'en' %}
+            Please choose one of the following choices.
+        {% elif lang == 'zh' %}
+            请从下列的选项中选择一个。
+        {% endif %}
+
+    </div>
+
+    <div class="container text-start">
+
+        {% if lang == 'both' %}
+            <h5>你面前有{{ box_color_distri.0 }}个F类型宝箱，{{ box_color_distri.1 }}个J类型宝箱。</h5>
+            <div class="d-flex flex-wrap justify-content-center">
+                <!-- 生成蓝色箱子 -->
+                {% for i in box_blue_list %}
+                    <div>
+                        {#                <div class="box blue-box"></div>#}
+                        <img class="box blue-box" src="{% static "cambridge_gambling_task/image/box_A.jpg" %}"
+                             alt="Blue Box">
+                        F型
+                    </div>
+                {% endfor %}
+
+                <!-- 生成红色箱子 -->
+                {% for i in box_red_list %}
+                    <div>
+                        {#                <div class="box red-box"></div>#}
+                        <img class="box red-box" src="{% static "cambridge_gambling_task/image/box_B.png" %}"
+                             alt="Red Box">
+                        J型
+                    </div>
+                {% endfor %}
+            </div>
+        {% elif lang == 'en' %}
+            <h5>In front of you, there are {{ box_color_distri.0 }} type F chests and {{ box_color_distri.1 }} type J
+                chests.</h5>
+            <div class="d-flex flex-wrap justify-content-center">
+                <!-- Generating blue chests -->
+                {% for i in box_blue_list %}
+                    <div>
+                        <!-- <div class="box blue-box"></div> -->
+                        <img class="box blue-box" src="{% static "cambridge_gambling_task/image/box_A.jpg" %}"
+                             alt="Blue Box">
+                        Type F
+                    </div>
+                {% endfor %}
+
+                <!-- Generating red chests -->
+                {% for i in box_red_list %}
+                    <div>
+                        <!-- <div class="box red-box"></div> -->
+                        <img class="box red-box" src="{% static "cambridge_gambling_task/image/box_B.png" %}"
+                             alt="Red Box">
+                        Type J
+                    </div>
+                {% endfor %}
+            </div>
+        {% elif lang == 'zh' %}
+            <h5>你面前有{{ box_color_distri.0 }}个F类型宝箱，{{ box_color_distri.1 }}个J类型宝箱。</h5>
+            <div class="d-flex flex-wrap justify-content-center">
+                <!-- 生成蓝色箱子 -->
+                {% for i in box_blue_list %}
+                    <div>
+                        {#                <div class="box blue-box"></div>#}
+                        <img class="box blue-box" src="{% static "cambridge_gambling_task/image/box_A.jpg" %}"
+                             alt="Blue Box">
+                        F型
+                    </div>
+                {% endfor %}
+
+                <!-- 生成红色箱子 -->
+                {% for i in box_red_list %}
+                    <div>
+                        {#                <div class="box red-box"></div>#}
+                        <img class="box red-box" src="{% static "cambridge_gambling_task/image/box_B.png" %}"
+                             alt="Red Box">
+                        J型
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div style="margin: 30px"></div>
+
+        {% if lang == 'both' %}
+            <h5>您当前阶段的积分为{{ remain_by_sub }}点，猜测金币在哪种类型的宝箱下，并决定下注比例：</h5>
+            <div style="margin: 45px"></div>
+            <div class="text-center">
+                <h5 class="text-start">F类型宝箱</h5>
+                <div class="row justify-content-center">
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.0 }}: <span>{{ form.choice.0 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.1 }}: <span>{{ form.choice.1 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.2 }}: <span>{{ form.choice.2 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.3 }}: <span>{{ form.choice.3 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.4 }}: <span>{{ form.choice.4 }}</span>
+                    </div>
+                </div>
+                <h5 class="text-start">J类型宝箱</h5>
+                <div class="row justify-content-center">
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.5 }}: <span>{{ form.choice.5 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.6 }}: <span>{{ form.choice.6 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.7 }}: <span>{{ form.choice.7 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.8 }}: <span>{{ form.choice.8 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.9 }}: <span>{{ form.choice.9 }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+        {% elif lang == 'en' %}
+            <h5>Your current phase points are {{ remain_by_sub }}. Guess under which type of chest the gold coin is and
+                decide on your betting ratio:</h5>
+            <div style="margin: 45px"></div>
+            <div class="text-center">
+                <h5 class="text-start">Type F Chests</h5>
+                <div class="row justify-content-center">
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.0 }}: <span>{{ form.choice.0 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.1 }}: <span>{{ form.choice.1 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.2 }}: <span>{{ form.choice.2 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.3 }}: <span>{{ form.choice.3 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.4 }}: <span>{{ form.choice.4 }}</span>
+                    </div>
+                </div>
+                <h5 class="text-start">Type J Chests</h5>
+                <div class="row justify-content-center">
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.5 }}: <span>{{ form.choice.5 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.6 }}: <span>{{ form.choice.6 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.7 }}: <span>{{ form.choice.7 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.8 }}: <span>{{ form.choice.8 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.9 }}: <span>{{ form.choice.9 }}</span>
+                    </div>
+                </div>
+            </div>
+            <br>
+        {% elif lang == 'zh' %}
+            <h5>您当前阶段的积分为{{ remain_by_sub }}点，猜测金币在哪种类型的宝箱下，并决定下注比例：</h5>
+            <div style="margin: 45px"></div>
+            <div class="text-center">
+                <h5 class="text-start">F类型宝箱</h5>
+                <div class="row justify-content-center">
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.0 }}: <span>{{ form.choice.0 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.1 }}: <span>{{ form.choice.1 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.2 }}: <span>{{ form.choice.2 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.3 }}: <span>{{ form.choice.3 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.4 }}: <span>{{ form.choice.4 }}</span>
+                    </div>
+                </div>
+                <h5 class="text-start">J类型宝箱</h5>
+                <div class="row justify-content-center">
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.5 }}: <span>{{ form.choice.5 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.6 }}: <span>{{ form.choice.6 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.7 }}: <span>{{ form.choice.7 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.8 }}: <span>{{ form.choice.8 }}</span>
+                    </div>
+                    <div class="col-2 list-group-item d-flex justify-content-between border">
+                        {{ choice_labels.9 }}: <span>{{ form.choice.9 }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+        {% endif %}
+
+
+
+        {% next_button %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        {% if lang == 'both' %}
+            $(".otree-btn-next").html("下一页 (Next)");
+        {% elif lang == 'en' %}
+            $(".otree-btn-next").html("Next");
+        {% elif lang == 'zh' %}
+            $(".otree-btn-next").html("下一页");
+        {%  endif %}
+    </script>
+{% endblock %}

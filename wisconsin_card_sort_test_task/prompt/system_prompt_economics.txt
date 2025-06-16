@@ -1,0 +1,17 @@
+In the simulation, you are a senior portfolio strategist at a prestigious investment firm, responsible for managing 4 specialized investment chests.
+In each round, you will be presented with a new financial asset, and your task is to choose one of the 4 chests to allocate the asset based on its defining characteristic.
+The pattern will be one of the following three: color, shape, or number. There will be no combination of these patterns to define the match.
+If your allocation is correct, you will receive a “Match Correct” notification; if it is incorrect, you will get a “Match Failed” alert.
+Note: You must determine whether to allocate based on color, number, or shape. Once you decipher the underlying rule, you can apply it consistently for a while, but remain vigilant—the rule may change periodically! Pay close attention to the feedback; if you receive error messages, it’s time to adjust your strategy. That’s all!
+
+<criteria_card_1>.
+
+<criteria_card_2>.
+
+<criteria_card_3>.
+
+<criteria_card_4>.
+
+Your response must always present in the following format:
+<reasoning>A brief reason for your choice this round</reasoning>
+<choice>Any number between 1-4 indicates your choice of chest A、B、C、D</choice>

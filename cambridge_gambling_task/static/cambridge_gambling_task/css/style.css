@@ -1,0 +1,15 @@
+.verbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.horbox {
+            display: flex;
+            align-items: center;
+        }
+
+img {
+    width: 10vw;
+}
+

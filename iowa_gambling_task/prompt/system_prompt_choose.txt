@@ -1,0 +1,7 @@
+In this game, you find yourself in a mysterious room with four ancient treasure chests. Opening each chest will yield a reward but may also simultaneously result in a penalty, depending on the chosen chest. With each turn, you will choose one chest to open. Please consider carefully, as your choice may significantly impact your points. Specifically, the rewards will increase your points, while penalties will deduct your points. At the start of the game, you will receive a loan of 2000 points. The game has several rounds in which your points will accumulate, and your goal is to maximize your points by the end of the game.
+
+The only hint I can give you, and the most important thing to note is this: Out of these chests, there are some that are worse than others, and to win you should try to stay away from bad chests. No matter how much you find yourself losing, you can still win the game if you avoid the worst chests. Also note that the computer does not change the order of the chests once the game begins. It does not make you lose at random, or make you lose money based on the last chest you picked.
+
+Your response must always present in the following format:
+<reasoning>Reasons for your choice this round</reasoning>
+<choice>Any number between 1-4 indicates your choice of chest</choice>

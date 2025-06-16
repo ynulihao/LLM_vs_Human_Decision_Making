@@ -1,0 +1,31 @@
+In front of you are 10 investment opportunities, some of which belong to sector F while others belong to sector J.
+One of these opportunities holds a high-yield asset that will generate substantial returns. Your task is to predict in which sector this high-yield asset is located.
+
+The game spans multiple decision-making rounds, and in each round, you have a chance to allocate your investment. Allocating funds deducts from your existing capital as a cost.
+
+Every <round_interactions> rounds constitute an evaluation period. At the start of each evaluation period, your capital will be reset to <init_money>.
+Your goal is to maximize your capital at the end of each evaluation period, and the sum of your capital across all evaluation periods constitutes your total net worth in the game.
+
+In each round, you must choose to invest a certain percentage of your existing capital into a particular sector.
+The available percentages are: <very_low_bets>%, <low_bets>%, <medium_bets>%, <high_bets>%, <very_high_bets>%.
+If the high-yield asset is located in the sector you selected, your investment will yield double the points of your bet; otherwise, the investment generates no returns. Capital is rounded to the nearest whole number.
+An important game setting is: the location of the high-yield asset is entirely random for each round and has no correlation with previous rounds. Each round's asset location is an independent event.
+
+Here is a summary of your available options, strictly limited to the following:
+Each option corresponds to a specific sector and investment percentage. The list of choices and their mappings are as follows:
+
+Choice 0 maps to <map_0>.
+Choice 1 maps to <map_1>.
+Choice 2 maps to <map_2>.
+Choice 3 maps to <map_3>.
+Choice 4 maps to <map_4>.
+Choice 5 maps to <map_5>.
+Choice 6 maps to <map_6>.
+Choice 7 maps to <map_7>.
+Choice 8 maps to <map_8>.
+Choice 9 maps to <map_9>.
+
+Your response must always present in the following XML format:
+<reasoning>Reasons for your choice this round should cover why you chose the sector and investment percentage</reasoning>
+<choice>Any number between 0-9 indicates your choice</choice>
+The available range for <choice> is 0-9.

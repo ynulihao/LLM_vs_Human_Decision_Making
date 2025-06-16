@@ -1,0 +1,74 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    登记参与人员信息{% if en %} (Participant Information){% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="alert alert-info">
+    {% if not collect_info_first %}
+        <p>你在本次游戏中总共获得 <b>{{ participant.payoff|json }} 分</b>。<br/>
+            {% if en %}
+                Your final score: <b>{{ participant.payoff|json }} unit{% if participant.payoff > 1 %}s{% endif %}</b>.
+            {% endif %}
+        </p>
+    {% endif %}
+        <p>
+            我们将记录你的信息，并用于发放实验金。<br/>
+            {% if en %}We need record your information to distribute experiment reward.<br/>{% endif %}
+            <span class="text-muted text-sm-left">（相关信息仅用于本次实验，且不会被泄露给第三方。）</span><br/>
+            {% if en %}<span class="text-muted text-sm-left">
+                (The personal information is only used for this experiment, and will not be disclosed to others.)   </span>
+                <br/>
+            {% endif %}
+            <br/><b class="text-danger">请保证姓名、联系方式和学号填写正确，否则你将无法收到实验奖励金。</b>
+            {% if en %}<br/><b class="text-danger">Please make sure your information is correct!</b>{% endif %}
+        </p>
+    </div>
+
+    {% formfield player.game_id label=lbl.game_id %}
+    {% formfield player.name label=lbl.name %}
+    {% formfield player.contact label=lbl.contact %}
+    {% formfield player.student_id label=lbl.student_id %}
+    {% formfield player.school label=lbl.school %}
+    {% formfield player.major label=lbl.major %}
+    {% formfield player.nation label=lbl.nation %}
+    {% formfield player.gender label=lbl.gender %}
+    {% formfield player.age label=lbl.age %}
+    {% formfield player.country label=lbl.country %}
+    {% formfield player.birthplace label=lbl.birthplace %}
+    {% formfield player.religion label=lbl.religion %}
+    {% formfield player.alipay label=lbl.alipay %}
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmSubmit">
+        提交{% if en %} (Submit){% endif %}
+    </button>
+
+    <!-- Modal -->
+    <div class="modal" id="confirmSubmit" tabindex="-1" role="dialog" aria-labelledby="confirmSubmitLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmSubmitLabel">确认提交？{% if en %} (Confirm submit?){% endif %}</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-danger">
+                    提交后内容无法修改。
+                    {% if en %}
+                        <br>(Information cannot be modified while submitted.)
+                    {% endif %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消 {% if en %}(Cancel){% endif %}</button>
+                    <button type="submit" class="otree-btn-next btn btn-primary">确认提交{% if en %} (Confirm){% endif %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

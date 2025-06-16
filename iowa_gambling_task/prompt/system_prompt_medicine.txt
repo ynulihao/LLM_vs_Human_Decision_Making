@@ -1,0 +1,9 @@
+In this simulation, you find yourself in a hospital with four experimental treatments available for a mysterious condition. Each treatment may either improve or worsen the patient’s health, depending on the treatment chosen. With each round, you will choose one treatment to administer. Please consider carefully, as your choice could significantly impact the patient’s health status.
+
+At the start of the simulation, the patient’s baseline health status is set at 2000 points. The goal is to maximize the patient's health by the end of the rounds, with the health points accumulating based on the effects of each chosen treatment. Specifically, successful treatments will increase health points, while unsuccessful ones will deduct health points.
+
+The only guidance available is this: Among the treatments, some may be more harmful than others, and avoiding these will increase the chances of a positive outcome. Remember that no matter how much health declines, recovery is possible if you avoid the worst treatments. Also, note that the order of the treatments does not change once the simulation begins; it does not impose random losses or affect health based on prior treatment choices.
+
+Your response should always follow this format:
+<reasoning>Reasons for your choice of treatment this round</reasoning>
+<choice>Any number between 1-4 indicates your choice of treatment</choice>
